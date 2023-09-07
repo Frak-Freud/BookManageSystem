@@ -4,7 +4,6 @@ import com.book.entity.Book;
 import com.book.entity.Borrow;
 import com.book.mapper.BookMapper;
 import com.book.service.BookService;
-import com.book.servlet.pages.IndexServlet;
 import com.book.utils.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -17,6 +16,14 @@ public class BookServiceImpl implements BookService {
         try(SqlSession sqlSession = MybatisUtil.getSession()){
             BookMapper mapper = sqlSession.getMapper(BookMapper.class);
             mapper.addBorrow(sid, bid);
+        }
+    }
+
+    @Override
+    public void deleteBook(int bid) {
+        try(SqlSession sqlSession = MybatisUtil.getSession()){
+            BookMapper mapper = sqlSession.getMapper(BookMapper.class);
+            mapper.deleteBook(bid);
         }
     }
 

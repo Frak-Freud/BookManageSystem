@@ -13,5 +13,6 @@ public interface BookService {
     void returnBook(int id);
     void addBorrow(int sid, int bid);
     void addBook(String title, String desc, double price);
+    void deleteBook(int bid);
 
 }
