@@ -12,5 +12,6 @@ public interface BookService {
     Map<Book, Boolean> getBookList();
     void returnBook(int id);
     void addBorrow(int sid, int bid);
+    void addBook(String title, String desc, double price);
 
 }

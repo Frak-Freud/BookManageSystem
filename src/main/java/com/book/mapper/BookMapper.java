@@ -29,5 +29,9 @@ public interface BookMapper {
     @Insert("insert into borrow(sid, bid, time) values(#{sid}, #{bid}, NOW())")
     void addBorrow(@Param("sid") int sid, @Param("bid") int bid);
 
+    // 注意关键字desc转义
+    @Insert("insert into book(title, `desc`, price) values(#{title}, #{desc}, #{price})")
+    void addBook(@Param("title") String title, @Param("desc") String desc, @Param("price") double price);
+
 
 }
