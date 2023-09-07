@@ -1,5 +1,6 @@
 package com.book.mapper;
 
+import com.book.entity.Book;
 import com.book.entity.Borrow;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -20,4 +21,9 @@ public interface BookMapper {
     })
     @Select("select * from borrow, student, book where borrow.sid = student.sid and borrow.bid = book.bid")
     List<Borrow> getBorrowList();
+
+    @Select("select * from book")
+    List<Book> getBookList();
+
+
 }
