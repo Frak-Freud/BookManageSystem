@@ -8,9 +8,8 @@ import java.util.Map;
 
 public interface BookService {
     List<Borrow> getBorrowList();
-
     List<Book> getActiveBookList();
-
     Map<Book, Boolean> getBookList();
+    void returnBook(int id);
 
 }

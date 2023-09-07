@@ -13,6 +13,14 @@ import java.util.stream.Collectors;
 
 public class BookServiceImpl implements BookService {
     @Override
+    public void returnBook(int id) {
+        try(SqlSession sqlSession = MybatisUtil.getSession()){
+            BookMapper mapper = sqlSession.getMapper(BookMapper.class);
+            mapper.deleteBorrow(id);
+        }
+    }
+
+    @Override
     public Map<Book, Boolean> getBookList() {
         Set<Integer> set = new HashSet<>();
         this.getBorrowList().forEach(borrow -> set.add(borrow.getBook_id()));

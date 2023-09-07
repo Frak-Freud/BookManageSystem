@@ -2,6 +2,7 @@ package com.book.mapper;
 
 import com.book.entity.Book;
 import com.book.entity.Borrow;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -24,6 +25,9 @@ public interface BookMapper {
 
     @Select("select * from book")
     List<Book> getBookList();
+
+    @Delete("delete from borrow where id = #{id}")
+    void deleteBorrow(int id);
 
 
 }
