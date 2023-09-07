@@ -11,5 +11,6 @@ public interface BookService {
     List<Book> getActiveBookList();
     Map<Book, Boolean> getBookList();
     void returnBook(int id);
+    void addBorrow(int sid, int bid);
 
 }

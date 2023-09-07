@@ -13,6 +13,14 @@ import java.util.stream.Collectors;
 
 public class BookServiceImpl implements BookService {
     @Override
+    public void addBorrow(int sid, int bid) {
+        try(SqlSession sqlSession = MybatisUtil.getSession()){
+            BookMapper mapper = sqlSession.getMapper(BookMapper.class);
+            mapper.addBorrow(sid, bid);
+        }
+    }
+
+    @Override
     public void returnBook(int id) {
         try(SqlSession sqlSession = MybatisUtil.getSession()){
             BookMapper mapper = sqlSession.getMapper(BookMapper.class);

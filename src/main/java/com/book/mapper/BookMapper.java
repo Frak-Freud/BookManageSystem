@@ -2,10 +2,7 @@ package com.book.mapper;
 
 import com.book.entity.Book;
 import com.book.entity.Borrow;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,6 +25,9 @@ public interface BookMapper {
 
     @Delete("delete from borrow where id = #{id}")
     void deleteBorrow(int id);
+
+    @Insert("insert into borrow(sid, bid, time) values(#{sid}, #{bid}, NOW())")
+    void addBorrow(@Param("sid") int sid, @Param("bid") int bid);
 
 
 }
