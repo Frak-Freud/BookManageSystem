@@ -1,5 +1,7 @@
 package com.book.config;
 
+import com.book.service.UserService;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,6 +49,10 @@ public class SecurityConfig {
                     conf.logoutUrl("/doLogout");
                     conf.logoutSuccessUrl("/login");
                     conf.permitAll();
+                })
+                .rememberMe(conf -> {
+                    conf.tokenRepository(tokenRepo);
+                    conf.tokenValiditySeconds(3600 * 24 * 3);
                 })
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
