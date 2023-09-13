@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Set;
@@ -35,6 +36,27 @@ public class IndexController {
         model.addAttribute("rest_count", bookList.size() - borrowList.size());
 
         return "index";
+    }
+
+    @GetMapping("/add-borrow")
+    public String addBorrow(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("nickname", user.getUsername());
+        model.addAttribute("book_list", bookService.getActiveBookList());
+        // model.addAttribute("student_list", )
+        return "add-borrow";
+    }
+
+    @PostMapping("/add-borrow")
+    public String addBorrow(int sid, int bid){
+        bookService.addBorrow(sid, bid);
+        return "redirect:/index";
+    }
+
+    @GetMapping("delete-borrow")
+    public String deleteBorrow(int id){
+        bookService.deleteBorrow(id);
+        return "redirect:/index";
     }
 
 

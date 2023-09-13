@@ -22,6 +22,12 @@ public interface BookMapper {
             """)
     List<Borrow> getBorrowList();
 
+    @Insert("insert into borrow(sid, bid, time) values(#{sid}, #{bid}, NOW())")
+    void addBorrow(@Param("sid") int title, @Param("bid") int bid);
+
+    @Delete("delete from borrow where id = #{id}")
+    void deleteBorrow(int id);
+
     @Select("select * from book")
     List<Book> getBookList();
 
