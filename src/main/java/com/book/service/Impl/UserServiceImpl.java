@@ -1,6 +1,7 @@
 package com.book.service.Impl;
 
 import com.book.entity.Account;
+import com.book.entity.Student;
 import com.book.mapper.UserMapper;
 import com.book.service.UserService;
 import jakarta.annotation.Resource;
@@ -8,6 +9,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,5 +30,10 @@ public class UserServiceImpl implements UserService {
                 .roles(account.getRole())
                 .build();
 
+    }
+
+    @Override
+    public List<Student> getStudentList() {
+        return userMapper.getStudentList();
     }
 }

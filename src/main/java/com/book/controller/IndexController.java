@@ -18,8 +18,8 @@ import java.util.Set;
 @Controller
 public class IndexController {
 
-    // @Resource
-    // UserService userService;
+    @Resource
+    UserService userService;
 
     @Resource
     BookService bookService;
@@ -34,7 +34,7 @@ public class IndexController {
         Set<Book> bookList = bookService.getBookList().keySet();
         model.addAttribute("book_count", bookList.size());
         model.addAttribute("rest_count", bookList.size() - borrowList.size());
-
+        model.addAttribute("student_count", userService.getStudentList().size());
         return "index";
     }
 
@@ -43,7 +43,7 @@ public class IndexController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("nickname", user.getUsername());
         model.addAttribute("book_list", bookService.getActiveBookList());
-        // model.addAttribute("student_list", )
+        model.addAttribute("student_list", userService.getStudentList());
         return "add-borrow";
     }
 
