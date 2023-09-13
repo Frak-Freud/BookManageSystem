@@ -1,5 +1,6 @@
 package com.book.controller;
 
+import com.book.entity.Book;
 import com.book.entity.Borrow;
 import com.book.service.BookService;
 import com.book.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class IndexController {
@@ -27,7 +29,10 @@ public class IndexController {
         model.addAttribute("nickname", user.getUsername());
         List<Borrow> borrowList = bookService.getBorrowList();
         model.addAttribute("borrow_list", borrowList);
-
+        model.addAttribute("borrow_count", borrowList.size());
+        Set<Book> bookList = bookService.getBookList().keySet();
+        model.addAttribute("book_count", bookList.size());
+        model.addAttribute("rest_count", bookList.size() - borrowList.size());
 
         return "index";
     }
