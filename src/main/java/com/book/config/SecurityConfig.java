@@ -43,6 +43,11 @@ public class SecurityConfig {
                     conf.defaultSuccessUrl("/");
                     conf.permitAll();
                 })
+                .logout(conf -> {
+                    conf.logoutUrl("/doLogout");
+                    conf.logoutSuccessUrl("/login");
+                    conf.permitAll();
+                })
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
